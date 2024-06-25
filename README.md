@@ -29,7 +29,7 @@ This Streamlit application predicts future stock prices using historical data an
    
    Copy code
    ```
-   streamlit run app.py
+   streamlit run main.py
    ```
 4. Open the local URL provided by Streamlit in your web browser.
 
