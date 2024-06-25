@@ -26,11 +26,11 @@ This Streamlit application predicts future stock prices using historical data an
    ```
 
 2. Run the app:
-   ```
    Copy code
+   ```
    streamlit run app.py
    ```
-3. Open the local URL provided by Streamlit in your web browser.
+4. Open the local URL provided by Streamlit in your web browser.
 
 ## Structure
 - **Data Loading**: Fetches historical stock data using yfinance.
