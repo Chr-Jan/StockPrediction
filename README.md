@@ -33,6 +33,8 @@ This Streamlit application predicts future stock prices using historical data an
    ```
 4. Open the local URL provided by Streamlit in your web browser.
 
+<img src="github_images/StockPrediction.png">
+
 ## Structure
 - **Data Loading**: Fetches historical stock data using yfinance.
 - **Modeling:** Prepares data for Prophet, fits the model, and makes predictions.
