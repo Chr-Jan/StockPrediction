@@ -25,9 +25,10 @@ This Streamlit application predicts future stock prices using historical data an
    pip install streamlit prophet yfinance plotly
 
 2. Run the app:
-sh
+```
 Copy code
 streamlit run app.py
+```
 3. Open the local URL provided by Streamlit in your web browser.
 
 ## Structure
