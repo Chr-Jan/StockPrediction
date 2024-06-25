@@ -13,11 +13,10 @@ This Streamlit application predicts future stock prices using historical data an
 - **Plotly**: A graphing library that generates interactive, publication-quality graphs online.
 
 ## Key Features
-- **Stock Selection**: Choose from AAPL, GOOG, TSLA, AMZN, MSFT, GME, AMC.
-- **Prediction Period**: Select 1 to 5 years for forecasting.
-- **Data Visualization**: Displays raw data and plots historical prices.
-- **Forecasting**: Uses Prophet to predict future stock prices.
-- **Interactive Interface**: Built with Streamlit for easy interaction.
+- **Dynamic Stock Selection**: Users can input a stock ticker symbol to fetch and analyze historical stock data.
+- **Customizable Prediction**: Predict stock prices for 1 to 10 years into the future based on user input.
+- **Data Visualization**: Interactive charts to visualize historical stock prices and forecasted trends.
+- **Error Handling**: Provides informative messages for data loading errors and ensures a smooth user experience.
 
 ## How to Run
 1. Install dependencies:
