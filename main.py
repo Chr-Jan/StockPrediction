@@ -1,29 +1,38 @@
 import streamlit as st
-from datetime import date
+from datetime import date, datetime
 import yfinance as yf
 from prophet import Prophet
 from prophet.plot import plot_plotly
 from plotly import graph_objs as go
 
-START = "2015-01-01"
-TODAY = date.today().strftime("%Y-%m-%d")
-
 # Title
 st.title("Stock Price Prediction")
 
-# Stock selection
-stocks = ("AAPL", "GOOG", "TSLA", "AMZN", "MSFT", "GME", "AMC")
-selected_stock = st.selectbox("Select a Stock", stocks)
+# User input for start year
+start_year = st.number_input("Enter the start year (e.g., 1995)", min_value=1900, max_value=date.today().year - 1, value=1995)
+
+# Convert start year to start date
+START = datetime(start_year, 1, 1).strftime("%Y-%m-%d")
+TODAY = date.today().strftime("%Y-%m-%d")
+
+# Stock selection via text input
+selected_stock = st.text_input("Enter a Stock Ticker Symbol (e.g., AAPL)", "AAPL")
+if not selected_stock:
+    st.warning("Please enter a valid stock ticker symbol.")
+    st.stop()
 
 # Years of prediction
-n_years = st.slider("Years of prediction:", 1, 5)
+n_years = st.slider("Years of prediction:", 1, 10)
 period = n_years * 365
 
 # Cache data loading function
-@st.cache_data(persist=True)
-def load_data(ticker):
+@st.cache_data()
+def load_data(ticker, start_date, end_date):
     try:
-        data = yf.download(ticker, START, TODAY)
+        data = yf.download(ticker, start_date, end_date)
+        if data.empty:
+            st.warning("No data found for the selected stock. Please try another.")
+            return None
         data.reset_index(inplace=True)
         return data
     except Exception as e:
@@ -32,7 +41,7 @@ def load_data(ticker):
 
 # Load data
 data_load_state = st.text("Loading data...")
-data = load_data(selected_stock)
+data = load_data(selected_stock, START, TODAY)
 data_load_state.text("")
 
 # Check if data is loaded
@@ -74,4 +83,4 @@ if data is not None:
     fig2 = m.plot_components(forecast)
     st.write(fig2)
 else:
-    st.error("Failed to load data.")
+    st.error("Failed to load data. Please check your internet connection or try again later.")
